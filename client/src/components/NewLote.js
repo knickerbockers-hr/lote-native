@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { TextInput, View, Text, StyleSheet, ScrollView } from 'react-native';
 import CheckBox from 'react-native-checkbox';
@@ -13,8 +13,9 @@ import store from '../store';
 
 const apiBaseUrl = config.API_BASE_URL;
 
-class NewLote extends Component {
-   static navigationOptions = {
+class NewLote extends React.Component {
+
+  static navigationOptions = {
     tabBarLabel: 'New Lote',
     tabBarIcon: () => (<Icon size={ 24 } color="white" name="add-location" />)
   }
@@ -112,6 +113,37 @@ class NewLote extends Component {
   //   event.preventDefault();
   //   console.log(event);
   // }
+
+  watchID: ?number = null;
+
+  state = {
+    initialPosition: 'unknown',
+    lastPosition: 'unknown',
+  };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var initialPosition = JSON.stringify(position);
+        this.setState({initialPosition});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+    this.watchID = navigator.geolocation.watchPosition(
+      (position) => {
+        var lastPosition = JSON.stringify(position);
+        console.log ('lastPosition', lastPosition);
+        this.setState({lastPosition});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 1}
+    );
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
 
   render() {
     const {lotecation, userLocation} = this.props;
