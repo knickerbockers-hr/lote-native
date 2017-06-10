@@ -8,7 +8,7 @@ let defaultState = {}; // we need a reducer for each state
 
 const logger = createLogger({ predicate: (getState, action) => __DEV__});
 
-const enhancer = compose(applyMiddleware(thunk, logger,));
+const enhancer = compose(applyMiddleware(thunk, logger));
 
 const store = createStore(rootReducer, defaultState, enhancer);
 

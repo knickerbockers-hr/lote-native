@@ -16,18 +16,50 @@ const styles = StyleSheet.create({
 });
 
 class WrappedMap extends React.Component {
+
   constructor(props) {
     super(props);
 
-    this.searchBox = {getPlace: () => {
-      console.log('searchBox not loaded');
+    this.state = {position: {
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
     }};
+
     this.onSubmit = this.onSubmit.bind(this);
     this.centerMoved = this.centerMoved.bind(this);
   }
 
-  componentDidMount() {
-    this.renderSearchBox();
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({position: {
+          latitude: position.latitude,
+          longitude: position.longitude,
+          latitudeDelta: this.state.latitudeDelta,
+          longitudeDelta: this.state.longitudeDelta
+        }});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+    this.watchID = navigator.geolocation.watchPosition(
+      (position) => {
+        this.setState({position: {
+          latitude: position.latitude,
+          longitude: position.longitude,
+          latitudeDelta: this.state.latitudeDelta,
+          longitudeDelta: this.state.longitudeDelta
+        }});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 1}
+    );
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
   componentDidUpdate(prevProps) {
@@ -39,55 +71,21 @@ class WrappedMap extends React.Component {
     // }
   }
 
-  centerMoved(mapProps, map) {
-    // let location = map.getCenter();
-    // this.props.updateLotecation({lat: location.lat(), lng: location.lng()});
+  centerMoved(region) {
+    this.props.updateLotecation({lat: region.latitude, lng: region.longitude});
   }
 
   onSubmit(event) {
     event.preventDefault();
   }
 
-  renderSearchBox() {
-
-    const {google, map} = this.props;
-
-    if (!google || !map || !this.props.searchBox) { return; }
-    const aref = this.props.searchBox;
-    const node = ReactDOM.findDOMNode(aref);
-    console.log('node: ', node);
-    const searchBox = new google.maps.places.SearchBox(node);
-    map.addListener('bounds_changed', function() {
-      searchBox.setBounds(map.getBounds());
-    });
-
-    searchBox.addListener('places_changed', () => {
-      const places = searchBox.getPlaces();
-      const place = places[0];
-
-      if (!place.geometry) {
-        return;
-      }
-
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);
-      }
-
-      let {lat, lng} = place.geometry.location;
-      this.props.updateLotecation({lat: lat(), lng: lng()});
-    });
-
-    this.searchBox = searchBox;
-  }
-
   render() {
     const {lotecation, userLocation} = this.props;
     return (
       <View style={styles.container}>
-        <MapView provider="google">
+        <MapView provider="google"
+          region={this.state.position}
+          onRegionChange={this.centerMoved}>
         </MapView>
       </View>
     );

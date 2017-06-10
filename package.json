@@ -16,6 +16,7 @@
     "react-native-background-geolocation": "^2.8.1",
     "react-native-checkbox": "^1.1.0",
     "react-native-dropdown": "git+https://github.com/g6ling/react-native-dropdown.git",
+    "react-native-google-maps": "^1.0.0",
     "react-native-lock": "^0.6.0",
     "react-native-maps": "^0.15.2",
     "react-native-material-bottom-navigation": "^0.5.1",
