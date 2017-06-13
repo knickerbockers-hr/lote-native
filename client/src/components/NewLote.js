@@ -66,34 +66,9 @@ class NewLote extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); 
 
-  //UNCOMMENT THIS BLOCK WHEN READY FOR SOCKET
-  //   let loteInfo = {
-  //     senderId: this.props.profile.id, 
-  //     receiverId: this.props.activeContact.id, 
-  //     loteType: 'lotes_text', 
-  //     radius: this.state.radius, 
-  //     message: this.props.activeMessage,
-  //     lock: this.state.lock,
-  //     longitude: this.props.lotecation.lng || this.props.userLocation.lng,
-  //     latitude: this.props.lotecation.lat || this.props.userLocation.lat
-  //   }
-
-  //   socket.emit('send message', loteInfo, (err, msg) => {
-  //     if (err) {
-  //       console.log(err); 
-  //     } else {
-  //       this.props.setActiveMessage(''); 
-  //       //this.props.history.push('/lotes'); 
-  //     }
-  //   });
-  // }
-
-
-  //AXIOS.POST TO END OF THE METHOD IS FOR OLD POST REQUEST,
-  //DELETE WHEN ADDING SOCKET FEATURE 
-    axios.post(`${apiBaseUrl}/profiles/${this.props.profile.id}/lotes`, {
+    let loteInfo = {
       senderId: this.props.profile.id,
       receiverId: this.props.activeContact.id,
       loteType: 'lotes_text',
@@ -102,14 +77,17 @@ class NewLote extends Component {
       lock: this.state.lock,
       longitude: this.props.lotecation.lng || this.props.userLocation.lng,
       latitude: this.props.lotecation.lat || this.props.userLocation.lat
-    })
-    .then((res) => {
-      this.props.setActiveMessage('');
-      this.props.getLotes(this.props.profile.id);
-      this.props.history.push('/lotes');
-    })
-    .catch((err) => {
-      console.log (err);
+    };
+    
+    socket.emit('send message', loteInfo, (err, msg) => {
+      if (err) {
+        console.log (err);
+      } else {
+        console.log (msg);
+        this.props.setActiveMessage('');
+        // this.props.getLotes(this.props.profile.id), 
+        //this.props.history.push('/lotes');
+      }
     });
 
     return this.props.navigation.navigate('Map');

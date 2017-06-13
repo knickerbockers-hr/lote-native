@@ -22,6 +22,13 @@ export const addLotesToStore = (lotes) => {
   };
 };
 
+export const addOneLote = (lote) => {
+  return {
+    type: 'ONE_LOTE',
+    lote
+  };
+};
+
 export const getLotes = (userId) => {
   console.log ('getting lotes');
   return function(dispatch, getState) {
