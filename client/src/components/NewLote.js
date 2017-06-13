@@ -8,6 +8,7 @@ import { Header } from './common';
 import { Container, Content, List, ListItem, Thumbnail, Body, Item, Input, Form, Button, Label, Picker } from 'native-base';
 import MapView from 'react-native-maps';
 import config from '../../../config/config.js';
+import socket from '../socket'; 
 
 const apiBaseUrl = config.API_BASE_URL;
 
