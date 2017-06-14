@@ -129,48 +129,54 @@ class NewLote extends Component {
     return (
       <Container>
         <Header headerText='New Lote' { ...this.props } />
-        <Content style={{ marginTop: 10 }}>
-          <Text>Select Recipient:</Text>
-          <Picker
-            supportedOrientations={ ['portrait','landscape'] }
-            iosHeader="Recipient"
-            mode="dropdown"
-            selectedValue={ this.state.recipientIndex }
-            onValueChange={ this.handleRecipientChange }>
-            { this.props.contacts.map((contact, index) => {
-              return (
-                <Picker.Item label={ contact.receiver.display ? contact.receiver.display : contact.receiver.email } key={ contact.receiver.id } value={ index } />
-              )
-            })}
-          </Picker>
+        <Content>
+          <View style={{ alignItems: 'center', marginTop: 50 }}>
+            <Text>Select Recipient:</Text>
+            <Picker
+              supportedOrientations={ ['portrait','landscape'] }
+              iosHeader="Recipient"
+              mode="dropdown"
+              selectedValue={ this.state.recipientIndex }
+              onValueChange={ this.handleRecipientChange }>
+              { this.props.contacts.map((contact, index) => {
+                return (
+                  <Picker.Item label={ contact.receiver.display ? contact.receiver.display : contact.receiver.email } key={ contact.receiver.id } value={ index } />
+                )
+              })}
+            </Picker>
+          </View>
           <Item underline onChangeText={ (event) => this.props.setActiveMessage(event.target.value) }>
             <Input placeholder='Enter a message' />
           </Item>  
           <Item underline>
             <Input id="locationSearch" ref={ this.placeRef } placeholder='Location search' />
           </Item>
-          <Text>Select Radius:</Text>
-          <Picker
-            supportedOrientations={ ['portrait','landscape'] }
-            iosHeader="Select Radius"
-            mode="dropdown"
-            selectedValue={ this.state.radius }
-            onValueChange={ this.handleRadiusChange.bind(this) }>
-            <Picker.Item value={ 20 } label="20 meters" />
-            <Picker.Item value={ 100 } label="100 meters" />
-            <Picker.Item value={ 500 } label="500 meters" />
-            <Picker.Item value={ 2500 } label="2,500 meters" />
-            <Picker.Item value={ 10000 } label="10,000 meters" />
-          </Picker>
-          <CheckBox
-            label="Location-Locked"
-            checked={ this.state.lock }
-            onChange={ (checked) => this.handleLockToggle(!checked) }
-          />
-          <View style={{ alignItems: 'center' }}>
-            <Button primary onPress={ this.handleSubmit }>
-              <Text>Submit</Text>
-            </Button>
+          <View style={{ alignItems: "center" }}>
+            <Text>Select Radius:</Text>
+            <Picker
+              supportedOrientations={ ['portrait','landscape'] }
+              iosHeader="Select Radius"
+              mode="dropdown"
+              selectedValue={ this.state.radius }
+              onValueChange={ this.handleRadiusChange.bind(this) }>
+              <Picker.Item value={ 20 } label="20 meters" />
+              <Picker.Item value={ 100 } label="100 meters" />
+              <Picker.Item value={ 500 } label="500 meters" />
+              <Picker.Item value={ 2500 } label="2,500 meters" />
+              <Picker.Item value={ 10000 } label="10,000 meters" />
+            </Picker>
+            <View style={{ marginTop:10 }}>
+              <CheckBox
+                label="Location-Locked"
+                checked={ this.state.lock }
+                onChange={ (checked) => this.handleLockToggle(!checked) }
+              />
+            </View>
+            <View style={{ alignItems: 'center', marginTop:10 }}>
+              <Button primary onPress={ this.handleSubmit }>
+                <Text>Submit</Text>
+              </Button>
+           </View>  
           </View>  
         </Content>
       </Container>

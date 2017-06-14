@@ -142,6 +142,21 @@ export const setActiveMessage = (activeMessage) => {
   };
 };
 
+export const setActiveLoteId = (activeLoteId) => {
+  return {
+    type: 'SET_ACTIVE_LOTE_ID',
+    activeLoteId
+  };
+};
+
+export const setActiveLote = (activeLote) => {
+  console.log ('setttttting active lote');
+  return {
+    type: 'SET_ACTIVE_LOTE',
+    activeLote
+  };
+};
+
 export const addRecipe = () => {
   return {
     type: 'ADD_RECIPE'

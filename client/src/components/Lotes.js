@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NavigationActions } from 'react-navigation';
 import { Header } from './common';
@@ -33,6 +33,30 @@ class Lotes extends Component {
     tabBarIcon: () => (<Icon size={24} color="white" name="contacts" />),
   }
 
+  constructor (props) {
+    super(props);
+    this.forMoreDetails = this.forMoreDetails.bind(this);
+  }
+
+  forMoreDetails(loteId) {
+    console.log('pressssssed', loteId);
+    this.props.setActiveLoteId(loteId);
+
+    if (this.props.lotes.length > 0) {
+      console.log ('props length greater than 0');
+      console.log ('active lote id', this.props.activeLoteId);
+      this.props.lotes.forEach(lote => {
+        console.log ('lote id', lote.id);
+        if (lote.id === loteId) {
+          console.log('found lote');
+          this.props.setActiveLote(lote);
+        }
+      });
+    }
+
+    return this.props.navigation.navigate('Lote');
+  }
+
   render() {
     let lotesDisplayCount = 0;
     // const { goBack } = this.props.navigation;
@@ -54,17 +78,17 @@ class Lotes extends Component {
                 lotesDisplayCount++;
                 if (lote.sender_id === this.props.profile.id) {
                   return (
-                    <View style={ styles.senderStyle } key={ lote.id } onClick={ () => this.handleClick(lote.id) }>
+                    <TouchableOpacity style={ styles.senderStyle } key={ lote.id } onPress={ () => { this.forMoreDetails(lote.id) } }>
                       <Text>{ lote.lote.message }</Text>
                       <Text>sent { Moment(lote.created_at).fromNow() }</Text>
-                    </View>
+                    </TouchableOpacity>
                   );
                 } else if (lote.lotesReceived[0].receiver_id === this.props.profile.id) {
                   return (
-                    <View style={ styles.receiverStyle } key={ lote.id } onClick={ () => this.handleClick(lote.id) }>
+                    <TouchableOpacity style={ styles.receiverStyle } key={ lote.id } onPress={ () => { this.forMoreDetails(lote.id) } }>
                       <Text>{ lote.lote.message }</Text>
                       <Text>sent { Moment(lote.created_at).fromNow() }</Text>                       
-                    </View>
+                    </TouchableOpacity>
                   );
                 }
               }
@@ -73,10 +97,10 @@ class Lotes extends Component {
               if (lote.sender_id === this.props.profile.id && lote.lotesReceived[0].receiver_id === this.props.profile.id) {
                 lotesDisplayCount++;
                 return (
-                  <View style={ styles.senderStyle } key={ lote.id } onClick={ () => this.handleClick(lote.id) }>
+                  <TouchableOpacity style={ styles.senderStyle } key={ lote.id } onPress={ () => { this.forMoreDetails(lote.id) } }>
                     <Text>{ lote.lote.message }</Text>
                     <Text >sent { Moment(lote.created_at).fromNow() }</Text>
-                  </View>
+                  </TouchableOpacity>
                 );
               }
             })
