@@ -2,9 +2,22 @@ import store from './store';
 import socket from './socket';
 import locationManager from './lib/BGService';
 import iosPush from './lib/iosPush';
+import PushNotification from 'react-native-push-notification';
+
+PushNotification.configure({
+  onNotification: (notification) => {
+    // do something
+  }, 
+
+  requestPermissions: true
+});
 
 locationManager.on("geofence", (geofence) => {
-
+  PushNotification.localNotification({
+    title: 'Incoming Lote',
+    message: geofence.extras.lote.lote.message || 'Ooops',
+    playSound: true
+  });
 });
 
 let success = (pos) => {
