@@ -7,6 +7,7 @@
 import {
   AsyncStorage
 } from 'react-native';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
 import EventEmitter from 'EventEmitter';
 
@@ -130,7 +131,7 @@ class BGService {
     });
     this.state = {};
 
-    this.plugin = global.BackgroundGeolocation;
+    this.plugin = BackgroundGeolocation;
 
     let platform = DeviceInfo.getSystemName();
     if (platform.match(/iPhone/)) {
@@ -274,8 +275,8 @@ class BGService {
       extras: {
         "lote": lote
       },
-      latitude: lote.postition.latitude,
-      longitude: lote.position.longitude,
+      latitude: lote.position ? lote.postition.latitude : 0,
+      longitude: lote.position ? lote.position.longitude : 0,
       radius: lote.radius,
       notifyOnEntry: true,
       notifyOnExit: false,
@@ -299,9 +300,10 @@ class BGService {
   */
   loadGeofences(lotes) {
     let geofences = lotes.map((lote) => this.convertLoteToGeofence(lote));
+    let plugin = this.plugin
 
     return new Promise((resolve, reject) => {
-      this.plugin.addGeofences(geofences, 
+      plugin.addGeofences(geofences, 
         () => { resolve(); }, 
         () => { reject(); });
     });

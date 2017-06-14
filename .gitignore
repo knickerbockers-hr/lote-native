@@ -1,5 +1,6 @@
 config/
 ios/loteNative/constants.h
+ios/constants.h
 
 # OSX
 #

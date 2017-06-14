@@ -4,18 +4,16 @@ import { Container } from 'native-base';
 import { Header } from './common';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MapView from 'react-native-maps';
+import MapContainer from './MapContainer';
 
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     //height: 100%,
     //width: 100%,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'center'
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
+  }
 });
 
 class Map extends React.Component {
@@ -26,20 +24,10 @@ class Map extends React.Component {
 
   render() {
     return (
-      <Container>
-        <View style={ styles.container }>
-          <Header headerText='New Lote' { ...this.props } />
-          <MapView provider="google"
-            style={ styles.map }
-            region={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121,
-            }}>
-          </MapView>
-        </View>
-      </Container>
+      <View style={styles.container}>
+        <MapContainer style={styles.container}/>
+        <Header headerText='New Lote' { ...this.props } />
+      </View>
     )
   }
 }

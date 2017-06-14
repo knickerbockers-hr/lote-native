@@ -75,6 +75,8 @@ PODS:
     - React/Core
   - React/RCTNetwork (0.44.2):
     - React/Core
+  - React/RCTPushNotification (0.44.2):
+    - React/Core
   - React/RCTSettings (0.44.2):
     - React/Core
   - React/RCTText (0.44.2):
@@ -111,6 +113,7 @@ DEPENDENCIES:
   - React/RCTImage (from `../node_modules/react-native`)
   - React/RCTLinkingIOS (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
+  - React/RCTPushNotification (from `../node_modules/react-native`)
   - React/RCTSettings (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
@@ -152,6 +155,6 @@ SPEC CHECKSUMS:
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
   Yoga: 735d941f871ac6c4853334c164c424e013a79a17
 
-PODFILE CHECKSUM: ad3d39da8a7eeea4c5d24f590f021ee62fb45863
+PODFILE CHECKSUM: 9b72aed6371f19c8dfb11efc6a605dbac2ef4197
 
 COCOAPODS: 1.2.1
