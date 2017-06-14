@@ -12,6 +12,8 @@ import activePage from './activePage';
 import activeContact from './activeContact';
 import activeMessage from './activeMessage';
 import contactForm from './contactForm';
+import activeLoteId from './activeLoteId';
+import activeLote from './activeLote';
 
 const rootReducer = combineReducers({
   recipes,
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   activePage,
   activeContact,
   activeMessage,
+  activeLoteId,
+  activeLote,
   contactForm
 //   routing: routerReducer
 });

@@ -11,6 +11,7 @@ import MyProfile from './MyProfile';
 import Random from './Random';
 import Map from './Map';
 import Lotes from './Lotes';
+import Lote from './Lote';
 
 var HomeScreen = connect((state) => { return state; }, actionCreators)(Home);
 var ContactsScreen = connect((state) => { return state; }, actionCreators)(Contacts);
@@ -19,6 +20,7 @@ var MyProfileScreen = connect((state) => { return state; }, actionCreators)(MyPr
 var RandomScreen = connect((state) => { return state; }, actionCreators)(Random);
 var MapScreen = connect((state) => { return state; }, actionCreators)(Map);
 var LotesScreen = connect((state) => { return state; }, actionCreators)(Lotes);
+var LoteScreen = connect((state) => { return state; }, actionCreators)(Lote);
 
 export const NewLoteStack = StackNavigator({
   NewLote: {
@@ -43,6 +45,9 @@ export const ContactsStack = StackNavigator({
   },
   Lotes: {
     screen: LotesScreen,
+  },
+  Lote: {
+    screen: LoteScreen,
   }
 }, {
   mode: 'card',
