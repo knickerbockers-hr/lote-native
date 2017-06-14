@@ -53,6 +53,7 @@
 		A50991B1477A4F7B9B652611 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E488383AB19A4A169E208CD6 /* MaterialIcons.ttf */; };
 		AE0C2EDA441D4D67845CB158 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 963547781FB94446BC02C681 /* Roboto_medium.ttf */; };
 		B465987DEB3154A0194834A8 /* libPods-loteNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7569982D6E696C3C3564B2 /* libPods-loteNative.a */; };
+		DB7A181B1EF16DD900392F9A /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7A18061EF16DA600392F9A /* libRCTPushNotification.a */; };
 		DDE185F772A04EF19E40C5CA /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7907FDCB4B454900BC3B4F6F /* Ionicons.ttf */; };
 		E476F1549A34481181B9A99D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECE48B6B9CBD4380A26C9C9A /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
@@ -261,6 +262,20 @@
 			remoteGlobalIDString = 83FF5F901AFD0D2B0016A13E;
 			remoteInfo = RNBackgroundGeolocationTests;
 		};
+		DB7A18051EF16DA600392F9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB7A17F51EF16DA600392F9A /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTPushNotification;
+		};
+		DB7A18071EF16DA600392F9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB7A17F51EF16DA600392F9A /* RCTPushNotification.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D05745F1DE6004600184BB4;
+			remoteInfo = "RCTPushNotification-tvOS";
+		};
 		DB81B2021EE6300300339F1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4FC3332766DA4535B5463E91 /* RNVectorIcons.xcodeproj */;
@@ -346,6 +361,8 @@
 		B0683A9B634250B20812FDCD /* Pods-loteNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-loteNative.debug.xcconfig"; path = "Pods/Target Support Files/Pods-loteNative/Pods-loteNative.debug.xcconfig"; sourceTree = "<group>"; };
 		BD50ACF1D72F45BB8DA225C3 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		C073E4CE42C142B18D52C8F1 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		DB7A17F51EF16DA600392F9A /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
+		DBD40B8D1EF168C40012485C /* loteNative.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = loteNative.entitlements; path = loteNative/loteNative.entitlements; sourceTree = "<group>"; };
 		E488383AB19A4A169E208CD6 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		ECE48B6B9CBD4380A26C9C9A /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		EEE0063D47004499A244EA5F /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
@@ -380,6 +397,7 @@
 				B465987DEB3154A0194834A8 /* libPods-loteNative.a in Frameworks */,
 				49201928C4F24E4E902325F1 /* libRNVectorIcons.a in Frameworks */,
 				733787A7FCA24FB6BF1AE9D5 /* libRNBackgroundGeolocation.a in Frameworks */,
+				DB7A181B1EF16DD900392F9A /* libRCTPushNotification.a in Frameworks */,
 				076F037E59AB4A4ABE1210EB /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +507,7 @@
 		13B07FAE1A68108700A75B9A /* loteNative */ = {
 			isa = PBXGroup;
 			children = (
+				DBD40B8D1EF168C40012485C /* loteNative.entitlements */,
 				A058BD1E1EEE3AE300075A3E /* RNBackgroundFetch+AppDelegate.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -546,7 +565,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				F844CE241EF0BB60003E114D /* RCTPushNotification.xcodeproj */,
+				DB7A17F51EF16DA600392F9A /* RCTPushNotification.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -645,6 +664,15 @@
 				7E84A112A5967C4C4CBF5147 /* Pods-loteNative.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DB7A17F61EF16DA600392F9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB7A18061EF16DA600392F9A /* libRCTPushNotification.a */,
+				DB7A18081EF16DA600392F9A /* libRCTPushNotification-tvOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		DB81B1E51EE6300300339F1E /* Products */ = {
@@ -769,6 +797,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -823,8 +854,8 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
-					ProductGroup = F844CE251EF0BB60003E114D /* Products */;
-					ProjectRef = F844CE241EF0BB60003E114D /* RCTPushNotification.xcodeproj */;
+					ProductGroup = DB7A17F61EF16DA600392F9A /* Products */;
+					ProjectRef = DB7A17F51EF16DA600392F9A /* RCTPushNotification.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1053,6 +1084,20 @@
 			fileType = wrapper.cfbundle;
 			path = RNBackgroundGeolocationTests.xctest;
 			remoteRef = A01784C41EEE0572003A3458 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DB7A18061EF16DA600392F9A /* libRCTPushNotification.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTPushNotification.a;
+			remoteRef = DB7A18051EF16DA600392F9A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DB7A18081EF16DA600392F9A /* libRCTPushNotification-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRCTPushNotification-tvOS.a";
+			remoteRef = DB7A18071EF16DA600392F9A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		DB81B2031EE6300300339F1E /* libRNVectorIcons.a */ = {
@@ -1344,6 +1389,7 @@
 			baseConfigurationReference = B0683A9B634250B20812FDCD /* Pods-loteNative.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = loteNative/loteNative.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 87W28QP4LG;
@@ -1352,6 +1398,7 @@
 					"$(SRCROOT)/../node_modules/react-native-lock/ios/A0RNLock/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native/libraries/PushNotificationIOS",
 				);
 				INFOPLIST_FILE = loteNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1372,6 +1419,7 @@
 			baseConfigurationReference = 7E84A112A5967C4C4CBF5147 /* Pods-loteNative.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = loteNative/loteNative.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 87W28QP4LG;
 				HEADER_SEARCH_PATHS = (
@@ -1379,6 +1427,7 @@
 					"$(SRCROOT)/../node_modules/react-native-lock/ios/A0RNLock/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native/libraries/PushNotificationIOS",
 				);
 				INFOPLIST_FILE = loteNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
