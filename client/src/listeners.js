@@ -1,5 +1,11 @@
 import store from './store';
 import socket from './socket';
+import locationManager from './lib/BGService';
+import iosPush from './lib/iosPush';
+
+locationManager.on("geofence", (geofence) => {
+
+});
 
 let success = (pos) => {
   store.dispatch({

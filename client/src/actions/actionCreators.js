@@ -49,7 +49,7 @@ export const getLotes = (userId) => {
       .then(function (lotes) {
         //console.log ('received lotes', lotes);
         dispatch(addLotesToStore(lotes));
-        
+
         if (state.activeLoteId) {
           lotes.forEach(lote => {
             if (lote.id === parseInt(state.activeLoteId)) {
@@ -57,6 +57,7 @@ export const getLotes = (userId) => {
             }
           });
         }
+        return locationManager.loadGeofences(lotes)
       })
       .catch(function (err) {
         console.log (err);

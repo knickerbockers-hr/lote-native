@@ -268,27 +268,37 @@ class BGService {
     eventEmitter.removeAllListeners();
   }
 
+  convertLoteToGeofence(lote) {
+    return {
+      identifier: 'lote_' + (++geofenceNextId),
+      extras: {
+        "lote": lote
+      },
+      latitude: lote.postition.latitude,
+      longitude: lote.position.longitude,
+      radius: lote.radius,
+      notifyOnEntry: true,
+      notifyOnExit: false,
+      notifyOnDwell: false,
+      loiteringDelay: '0'
+    };
+  }
+
+  loadGeofence(lote) {
+    return new Promise((resolve, reject) => {
+      this.plugin.addGeofence(convertLoteToGeofence(lote), 
+        () => { resolve(); },
+        () => { reject(); });
+    });
+  }
+
   /**
   * Load test geofences
   * @param {[lotes]} array of lotes
   * @param {Function} callback
   */
-  loadGeofences(lotes, config) {
-    let geofences = lotes.map(lote => {
-      return {
-        identifier: 'lote_' + (++geofenceNextId),
-        extras: {
-          "geofence_extra_foo": "extra geofence data"
-        },
-        latitude: data[n].lat,
-        longitude: data[n].lng,
-        radius: lote.radius,
-        notifyOnEntry: config.notifyOnEntry,
-        notifyOnExit: config.notifyOnExit,
-        notifyOnDwell: config.notifyOnDwell,
-        loiteringDelay: config.loiteringDelay
-      };
-    });
+  loadGeofences(lotes) {
+    let geofences = lotes.map((lote) => this.convertLoteToGeofence(lote));
 
     return new Promise((resolve, reject) => {
       this.plugin.addGeofences(geofences, 
