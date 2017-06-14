@@ -1,7 +1,7 @@
 const lotes = (state = [], action) => {
   switch (action.type) {
   case 'ADD_LOTES' :
-    console.log('adding lotes to store');
+    //console.log('adding lotes to store');
     return action.lotes;
   case 'ONE_LOTE' :
   	let newState = state.slice(); 

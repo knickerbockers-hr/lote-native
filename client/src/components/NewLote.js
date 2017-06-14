@@ -60,7 +60,7 @@ class NewLote extends React.Component {
   }
 
   handleLockToggle(checked) {
-    console.log('value of checkbox', checked);
+    //console.log('value of checkbox', checked);
     this.setState({ lock: checked });
   }
 
@@ -114,36 +114,10 @@ class NewLote extends React.Component {
   //   console.log(event);
   // }
 
-  watchID: ?number = null;
-
   state = {
     initialPosition: 'unknown',
     lastPosition: 'unknown',
   };
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var initialPosition = JSON.stringify(position);
-        this.setState({initialPosition});
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-    this.watchID = navigator.geolocation.watchPosition(
-      (position) => {
-        var lastPosition = JSON.stringify(position);
-        console.log ('lastPosition', lastPosition);
-        this.setState({lastPosition});
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 1}
-    );
-  }
-
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
-  }
 
   render() {
     const {lotecation, userLocation} = this.props;

@@ -1,5 +1,6 @@
 const axios = require('axios');
 import config from '../../../config/config.js';
+import locationManager from '../lib/BGService';
 const apiBaseUrl = config.API_BASE_URL;
 
 export const increment = () => {
@@ -30,7 +31,7 @@ export const addOneLote = (lote) => {
 };
 
 export const getLotes = (userId) => {
-  console.log ('getting lotes');
+  //console.log ('getting lotes');
   return function(dispatch, getState) {
     var state = getState();
     dispatch(loadingChanged(true));
@@ -40,13 +41,13 @@ export const getLotes = (userId) => {
         dispatch(loadingChanged(false));
 
         if (res.status === 200) {
-          console.log (res);
+          //console.log (res);
           return res.data;
         }
         throw 'request failed';
       })
       .then(function (lotes) {
-        console.log ('received lotes', lotes);
+        //console.log ('received lotes', lotes);
         dispatch(addLotesToStore(lotes));
         
         if (state.activeLoteId) {
@@ -56,23 +57,6 @@ export const getLotes = (userId) => {
             }
           });
         }
-        // locationTree.clear();
-        // // load points into r-tree
-        // locationTree.load(lotes.map((lote) => {
-        //   const {longitude, latitude} = lote.location;
-        //   let point = new geopoint(latitude, longitude);
-        //   // default radius half a mile until we have
-        //   // radius on all lotes
-        //   let radius = lote.radius || 0.5;
-        //   let bbox = point.boundingCoordinates(radius, true);
-        //   return {
-        //     minX: bbox[0].longitude(),
-        //     minY: bbox[0].latitude(),
-        //     maxX: bbox[1].longitude(),
-        //     maxY: bbox[1].latitude(),
-        //     data: lote
-        //   };
-        // }));
       })
       .catch(function (err) {
         console.log (err);
@@ -88,7 +72,7 @@ export const addContactsToStore = (contacts) => {
 };
 
 export const getContacts = (userId) => {
-  console.log ('getting contacts');
+  //console.log ('getting contacts');
   return function(dispatch, getState) {
     var state = getState();
     dispatch(loadingChanged(true));
@@ -98,13 +82,14 @@ export const getContacts = (userId) => {
         dispatch(loadingChanged(false));
 
         if (res.status === 200) {
-          console.log (res);
+          //console.log (res);
           return res.data;
+        } else {
+          throw 'request failed';
         }
-        throw 'request failed';
       })
       .then(function (contacts) {
-        console.log ('received contacts', contacts);
+        //console.log ('received contacts', contacts);
         dispatch(addContactsToStore(contacts));
       })
       .catch(function (err) {
@@ -121,7 +106,7 @@ export const setProfile = (profile) => {
 };
 
 export const getProfileByEmail = (email) => {
-  console.log ('getting profile');
+  //console.log ('getting profile');
   return function(dispatch, getState) {
     var state = getState();
     dispatch(loadingChanged(true));
@@ -131,10 +116,11 @@ export const getProfileByEmail = (email) => {
         dispatch(loadingChanged(false));
 
         if (res.status === 200) {
-          console.log (res);
+          //console.log (res);
           return res.data;
+        } else {
+          throw 'request failed';
         }
-        throw 'request failed';
       })
   };
 };

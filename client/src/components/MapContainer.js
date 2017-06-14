@@ -81,13 +81,14 @@ class WrappedMap extends React.Component {
 
   render() {
     const {lotecation, userLocation} = this.props;
-    console.log('HLEL');
     return (
         <MapView provider="google"
           style={styles.map}
           region={this.state.position}
           onRegionChange={this.centerMoved}
-          showsUserLocation={true}>
+          showsUserLocation={true}
+          loadingEnabled={true}
+          showsMyLocationButton={true}>
         </MapView>
 
     );

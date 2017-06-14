@@ -166,6 +166,7 @@ dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     //compile "com.android.support:appcompat-v7:25.4.0"
     compile "com.facebook.react:react-native:+"  // From node_modules
+    compile project(':react-native-device-info')
     compile(name: 'tslocationmanager', ext: 'aar')
     compile(project(':react-native-maps')){
         exclude group: 'com.google.android.gms', module: 'play-services-base'
