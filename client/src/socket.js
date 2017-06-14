@@ -1,6 +1,6 @@
 window.navigator.userAgent = 'ReactNative'; 
 import io from 'socket.io-client'; 
-const socket = io.connect(); 
+const socket = io.connect('https://lote-app.herokuapp.com'); 
 export default socket; 
 
 //create socket class if above doesn't work 

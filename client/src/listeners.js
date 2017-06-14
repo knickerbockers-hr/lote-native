@@ -24,7 +24,7 @@ let newLote = (lote) => {
 };
 
 socket.on('new message', function(data) {
-  console.log('SOCKET RESPONSE IN TRACKER.JS', data.data); 
+  console.log('SOCKET RESPONSE IN LISTENERS.JS', data.data); 
   newLote(data.data); 
 });
 

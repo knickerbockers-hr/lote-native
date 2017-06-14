@@ -81,7 +81,11 @@ class NewLote extends Component {
     };
     
     socket.emit('send message', loteInfo, (err, msg) => {
+      console.log('IN NEW LOTE IN THE MOBILE VERSION SOCKET EMIT');
+
       if (err) {
+        console.log('IN NEW LOTE. JS, SOCKET ACCESSED');
+
         console.log (err);
       } else {
         console.log (msg);
