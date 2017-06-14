@@ -72,7 +72,7 @@ class WrappedMap extends React.Component {
   }
 
   centerMoved(region) {
-    this.props.updateLotecation({lat: region.latitude, lng: region.longitude});
+    //this.props.updateLotecation({lat: region.latitude, lng: region.longitude});
   }
 
   onSubmit(event) {
@@ -84,7 +84,7 @@ class WrappedMap extends React.Component {
     console.log('HLEL');
     return (
         <MapView provider="google"
-          styles={styles.map}
+          style={styles.map}
           region={this.state.position}
           onRegionChange={this.centerMoved}
           showsUserLocation={true}>
