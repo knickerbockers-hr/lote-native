@@ -88,6 +88,8 @@ PODS:
   - RNBackgroundGeolocation (2.8.1):
     - CocoaLumberjack (~> 3.0)
     - React
+  - RNDeviceInfo (0.9.3):
+    - React
   - SimpleKeychain (0.8.0)
   - TouchIDAuth (0.2.0):
     - SimpleKeychain (~> 0.3)
@@ -115,6 +117,7 @@ DEPENDENCIES:
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
   - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga/Yoga.podspec`)
 
 EXTERNAL SOURCES:
@@ -128,6 +131,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-background-fetch"
   RNBackgroundGeolocation:
     :path: "../node_modules/react-native-background-geolocation"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga/Yoga.podspec"
 
@@ -137,15 +142,16 @@ SPEC CHECKSUMS:
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   Lock: 3414fed031b4044509697dd9b9da9208bc68ad26
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  React: 68b26ea7726bf0731e954db0187fd8b749ec2863
+  React: e7171a71af7ee097fdebf0c15d66a589f3710172
   react-native-google-maps: d0b8772eb76e1615ea32c73bc9d573360b8c0817
   react-native-maps: fe2e4680b4d3fcfd84d636ccedd470fe358d55e1
   RNBackgroundFetch: 7df90ae3925ba4ceacd112bb9e7b0d8e2f70a116
   RNBackgroundGeolocation: 38a57f5e881cd3c030dd6e1dc378228478e6f0c0
+  RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   SimpleKeychain: 84c748463eec601dfee5e7990f55cc82edc5488d
   TouchIDAuth: 0cf861f58a2cacfc1c12cb02de4850729d943c81
   Yoga: 735d941f871ac6c4853334c164c424e013a79a17
 
-PODFILE CHECKSUM: 4012a704aa01ccd47894ecf74a7c1c5f325d309c
+PODFILE CHECKSUM: ad3d39da8a7eeea4c5d24f590f021ee62fb45863
 
 COCOAPODS: 1.2.1
