@@ -6,18 +6,22 @@ import PushNotification from 'react-native-push-notification';
 
 PushNotification.configure({
   onNotification: (notification) => {
-    // do something
+    console.log('NOTIFICATION: ', notification);
   }, 
 
   requestPermissions: true
 });
 
 locationManager.on("geofence", (geofence) => {
+	console.log('hello geofence');
   PushNotification.localNotification({
     title: 'Incoming Lote',
     message: geofence.extras.lote.lote.message || 'Ooops',
     playSound: true
   });
+
+  locationManger.removeGeofence(geofence.identifier, () => { console.log('fence removed') },
+  	() => { console.log('removal failer'); });
 });
 
 let success = (pos) => {

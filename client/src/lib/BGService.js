@@ -279,8 +279,8 @@ class BGService {
       longitude: lote.position ? lote.position.longitude : 0,
       radius: lote.radius,
       notifyOnEntry: true,
-      notifyOnExit: false,
-      notifyOnDwell: false,
+      notifyOnExit: true,
+      notifyOnDwell: true,
       loiteringDelay: '0'
     };
   }

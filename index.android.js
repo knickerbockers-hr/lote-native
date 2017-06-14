@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import store from './client/src/store';
 import listeners from './client/src/listeners';
 import Nav from './client/src/components/Nav';
-import BackgroundGeolocation from 'react-native-background-geolocation';
 import BGHeadlessService from './client/src/lib/BGHeadlessService';
 
 // Android asks for permissions on as needed, 
@@ -27,8 +26,6 @@ async function requestLocationPermission() {
     console.warn(err)
   }
 }
-
-global.BackgroundGeolocation = BackgroundGeolocation;
 
 class Lote extends React.Component {
 
