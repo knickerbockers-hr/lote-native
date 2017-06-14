@@ -19,6 +19,7 @@
     "react-native-lock": "^0.6.0",
     "react-native-maps": "^0.15.2",
     "react-native-material-bottom-navigation": "^0.5.1",
+    "react-native-push-notification": "^3.0.0",
     "react-native-selectme": "^1.2.3",
     "react-native-socket.io-client": "^1.4.8",
     "react-native-vector-icons": "^4.2.0",
