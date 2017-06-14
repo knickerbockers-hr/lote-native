@@ -9,6 +9,7 @@ import { Container, Content, List, ListItem, Thumbnail, Body, Item, Input, Form,
 import MapView from 'react-native-maps';
 import config from '../../../config/config.js';
 import socket from '../socket'; 
+import store from '../store'; 
 
 const apiBaseUrl = config.API_BASE_URL;
 
@@ -67,8 +68,10 @@ class NewLote extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault(); 
+    //event.preventDefault(); 
     console.log('in handle submit mobile');
+
+    console.log('ACTIVE MESSAGE IS....', this.props.activeMessage);
 
     let loteInfo = {
       senderId: this.props.profile.id,
@@ -81,22 +84,24 @@ class NewLote extends Component {
       latitude: this.props.lotecation.lat || this.props.userLocation.lat
     };
     
+    console.log('LOTE INFOOOOO', loteInfo);
+
+
     socket.emit('send message', loteInfo, (err, msg) => {
       console.log('IN NEW LOTE IN THE MOBILE VERSION SOCKET EMIT');
 
       if (err) {
-        console.log('IN NEW LOTE. JS, SOCKET ACCESSED');
-
         console.log (err);
       } else {
-        console.log (msg);
-        this.props.setActiveMessage('');
-        this.props.getLotes(this.props.profile.id);
+
+        console.log('IN SOCKET EMIT FOR NEW LOTE COMPONENT')
+        store.dispatch(this.props.setActiveMessage(''));
+        //this.props.getLotes(this.props.profile.id);
         //this.props.history.push('/lotes');
       }
     });
 
-    return this.props.navigation.navigate('Map');
+    //return this.props.navigation.navigate('Map');
   }
 
   placeRef(ref) {
@@ -130,8 +135,8 @@ class NewLote extends Component {
             </Picker>
           </View>
           <View style={{ paddingTop:40 }}>
-            <Item underline onChangeText={ (event) => this.props.setActiveMessage(event.target.value) }>
-              <Input placeholder='Enter a message' />
+            <Item underline>
+              <Input placeholder='Enter a message' onChangeText={ (event) => this.props.setActiveMessage(event) }/>
             </Item>  
             <Item underline>
               <Input id="locationSearch" ref={ this.placeRef } placeholder='Location search' />
