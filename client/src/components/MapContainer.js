@@ -23,8 +23,8 @@ class WrappedMap extends React.Component {
     this.state = {position: {
       latitude: 37.78825,
       longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
+      latitudeDelta: 0.015,
+      longitudeDelta: 0.0121
     }};
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,34 +32,34 @@ class WrappedMap extends React.Component {
   }
 
   componentWillMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({position: {
-          latitude: position.latitude,
-          longitude: position.longitude,
-          latitudeDelta: this.state.latitudeDelta,
-          longitudeDelta: this.state.longitudeDelta
-        }});
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-    this.watchID = navigator.geolocation.watchPosition(
-      (position) => {
-        this.setState({position: {
-          latitude: position.latitude,
-          longitude: position.longitude,
-          latitudeDelta: this.state.latitudeDelta,
-          longitudeDelta: this.state.longitudeDelta
-        }});
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 1}
-    );
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => {
+    //     this.setState({position: {
+    //       latitude: position.latitude,
+    //       longitude: position.longitude,
+    //       latitudeDelta: this.state.latitudeDelta,
+    //       longitudeDelta: this.state.longitudeDelta
+    //     }});
+    //   },
+    //   (error) => alert(JSON.stringify(error)),
+    //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    // );
+    // this.watchID = navigator.geolocation.watchPosition(
+    //   (position) => {
+    //     this.setState({position: {
+    //       latitude: position.latitude,
+    //       longitude: position.longitude,
+    //       latitudeDelta: this.state.latitudeDelta,
+    //       longitudeDelta: this.state.longitudeDelta
+    //     }});
+    //   },
+    //   (error) => alert(JSON.stringify(error)),
+    //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 1}
+    // );
   }
 
   componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+   // navigator.geolocation.clearWatch(this.watchID);
   }
 
   componentDidUpdate(prevProps) {
@@ -81,13 +81,15 @@ class WrappedMap extends React.Component {
 
   render() {
     const {lotecation, userLocation} = this.props;
+    console.log('HLEL');
     return (
-      <View style={styles.container}>
         <MapView provider="google"
+          styles={styles.map}
           region={this.state.position}
-          onRegionChange={this.centerMoved}>
+          onRegionChange={this.centerMoved}
+          showsUserLocation={true}>
         </MapView>
-      </View>
+
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { TextInput, View, Text, StyleSheet, ScrollView } from 'react-native';
+import { TextInput, View, Text, ScrollView } from 'react-native';
 import CheckBox from 'react-native-checkbox';
 import Dropdown, { Select, Option, OptionList } from 'react-native-selectme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
