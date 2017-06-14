@@ -68,6 +68,7 @@ class NewLote extends Component {
 
   handleSubmit(event) {
     event.preventDefault(); 
+    console.log('in handle submit mobile');
 
     let loteInfo = {
       senderId: this.props.profile.id,
@@ -90,7 +91,7 @@ class NewLote extends Component {
       } else {
         console.log (msg);
         this.props.setActiveMessage('');
-        // this.props.getLotes(this.props.profile.id), 
+        this.props.getLotes(this.props.profile.id);
         //this.props.history.push('/lotes');
       }
     });

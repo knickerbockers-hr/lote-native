@@ -3,6 +3,10 @@ const lotes = (state = [], action) => {
   case 'ADD_LOTES' :
     console.log('adding lotes to store');
     return action.lotes;
+  case 'ONE_LOTE' :
+  	let newState = state.slice(); 
+  	newState.push(action.lote); 
+  	return newState; 
   default:
     return state;
   }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Button, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NavigationActions } from 'react-navigation';
 import { Header } from './common';
 import Moment from 'moment';
+import io from 'socket.io-client';
 
 const styles = StyleSheet.create({
   container: {
@@ -70,7 +71,7 @@ class Lotes extends Component {
     let lotesDisplayCount = 0;
     // const { goBack } = this.props.navigation;
     return (
-      <View>
+      <ScrollView>
         <Header
           headerText={
             this.props.activeContact.display
@@ -115,7 +116,7 @@ class Lotes extends Component {
             })
           }
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
