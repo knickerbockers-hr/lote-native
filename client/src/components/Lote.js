@@ -3,10 +3,18 @@ import Moment from 'moment';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { Header } from './common';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MapContainer from './MapContainer';
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+  },
+  mapContainer: {
+    ...StyleSheet.absoluteFillObject,
+    height: '100%',
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
   },
   chat: {
     display: 'flex',
@@ -96,7 +104,8 @@ class Lote extends Component {
     };
 
     return (
-      <View className={'newLoteContainer'}>
+      <View style={styles.mapContainer}>
+        <MapContainer style={styles.mapContainer} {...this.props} />
         <Header
           headerText={
             this.props.activeContact.display
