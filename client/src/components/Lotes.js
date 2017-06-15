@@ -11,19 +11,28 @@ const styles = StyleSheet.create({
   },
   chat: {
     display: 'flex',
+    marginTop: 10,
   },
   senderStyle: {
     backgroundColor: '#afd9e0',
-    marginTop: 5,
     padding: 10,
     position: 'relative',
-    alignItems: 'flex-end',
+    marginTop: 5,
+    marginRight: 20,
+    marginBottom: 5,
+    marginLeft: 20,
+    alignSelf: 'flex-end',
   },
   receiverStyle: {
     backgroundColor: '#ffff99',
-    marginTop: 5,
     padding: 10,
     position: 'relative',
+    marginTop: 5,
+    marginRight: 20,
+    marginBottom: 5,
+    marginLeft: 20,
+    alignSelf: 'flex-start',
+
   },
 });
 

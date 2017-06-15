@@ -145,13 +145,16 @@ class NewLote extends Component {
               })}
             </Picker>
           </View>
-          <Item underline onChangeText={ (event) => this.props.setActiveMessage(event.target.value) }>
-            <Input placeholder='Enter a message' />
-          </Item>  
-          <Item underline>
-            <Input id="locationSearch" ref={ this.placeRef } placeholder='Location search' />
-          </Item>
-          <View style={{ alignItems: "center" }}>
+          <View style={{ paddingTop:40 }}>
+            <Item underline onChangeText={ (event) => this.props.setActiveMessage(event.target.value) }>
+              <Input placeholder='Enter a message' />
+            </Item>  
+            <Item underline>
+              <Input id="locationSearch" ref={ this.placeRef } placeholder='Location search' />
+            </Item>
+          </View>
+          
+          <View style={{ alignItems: "center", paddingTop:75, paddingBottom:25 }}>
             <Text>Select Radius:</Text>
             <Picker
               supportedOrientations={ ['portrait','landscape'] }
@@ -165,7 +168,7 @@ class NewLote extends Component {
               <Picker.Item value={ 2500 } label="2,500 meters" />
               <Picker.Item value={ 10000 } label="10,000 meters" />
             </Picker>
-            <View style={{ marginTop:10 }}>
+            <View style={{ padding:10 }}>
               <CheckBox
                 label="Location-Locked"
                 checked={ this.state.lock }
@@ -174,9 +177,9 @@ class NewLote extends Component {
             </View>
             <View style={{ alignItems: 'center', marginTop:10 }}>
               <Button primary onPress={ this.handleSubmit }>
-                <Text>Submit</Text>
+                <Text style={{ color:'white', fontSize:20 }}>Submit</Text>
               </Button>
-           </View>  
+            </View>  
           </View>  
         </Content>
       </Container>
