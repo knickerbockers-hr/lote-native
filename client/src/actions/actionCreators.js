@@ -194,17 +194,3 @@ export const addRecipe = () => {
     type: 'ADD_RECIPE'
   };
 };
-
-export const setActiveLoteId = (activeLoteId) => {
-  return {
-    type: 'SET_ACTIVE_LOTE_ID',
-    activeLoteId
-  };
-};
-
-export const setActiveLote = (activeLote) => {
-  return {
-    type: 'SET_ACTIVE_LOTE',
-    activeLote
-  };
-};

@@ -84,7 +84,7 @@ class NewLote extends Component {
       latitude: this.props.lotecation.lat || this.props.userLocation.lat
     };
     
-    console.log('LOTE INFOOOOO', loteInfo);
+    console.log('LOTE INFO', loteInfo);
 
 
     socket.emit('send message', loteInfo, (err, msg) => {
