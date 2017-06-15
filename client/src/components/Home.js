@@ -44,8 +44,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <MapContainer {...this.props} style={styles.container}/>
+      <View>
         <Header headerText='Home' { ...this.props } />
         <Image source={logo} style={{ width:250, height:250, alignSelf: 'center', marginTop:100 }}/>
         <Text style={{ alignSelf: 'center', fontSize:20 }}>Location-based notes</Text>
