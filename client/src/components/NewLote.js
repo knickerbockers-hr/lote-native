@@ -101,7 +101,7 @@ class NewLote extends Component {
       }
     });
 
-    //return this.props.navigation.navigate('Map');
+    return this.props.navigation.navigate('Map');
   }
 
   placeRef(ref) {
