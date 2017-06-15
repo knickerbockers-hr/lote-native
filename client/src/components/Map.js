@@ -25,8 +25,8 @@ class Map extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <MapContainer style={styles.container}/>
-        <Header headerText='New Lote' { ...this.props } />
+        <MapContainer style={styles.container} {...this.props} />
+        <Header headerText='New Lote' { ...this.props } backButton={ true } />
       </View>
     )
   }
