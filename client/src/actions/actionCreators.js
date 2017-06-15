@@ -22,6 +22,13 @@ export const addLotesToStore = (lotes) => {
   };
 };
 
+export const addOneLote = (lote) => {
+  return {
+    type: 'ONE_LOTE',
+    lote
+  };
+};
+
 export const getLotes = (userId) => {
   console.log ('getting lotes');
   return function(dispatch, getState) {
@@ -41,6 +48,31 @@ export const getLotes = (userId) => {
       .then(function (lotes) {
         console.log ('received lotes', lotes);
         dispatch(addLotesToStore(lotes));
+        
+        if (state.activeLoteId) {
+          lotes.forEach(lote => {
+            if (lote.id === parseInt(state.activeLoteId)) {
+              dispatch(setActiveLote(lote));
+            }
+          });
+        }
+        // locationTree.clear();
+        // // load points into r-tree
+        // locationTree.load(lotes.map((lote) => {
+        //   const {longitude, latitude} = lote.location;
+        //   let point = new geopoint(latitude, longitude);
+        //   // default radius half a mile until we have
+        //   // radius on all lotes
+        //   let radius = lote.radius || 0.5;
+        //   let bbox = point.boundingCoordinates(radius, true);
+        //   return {
+        //     minX: bbox[0].longitude(),
+        //     minY: bbox[0].latitude(),
+        //     maxX: bbox[1].longitude(),
+        //     maxY: bbox[1].latitude(),
+        //     data: lote
+        //   };
+        // }));
       })
       .catch(function (err) {
         console.log (err);
