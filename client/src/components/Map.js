@@ -9,8 +9,8 @@ import MapContainer from './MapContainer';
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    //height: 100%,
-    //width: 100%,
+    height: '100%',
+    width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center'
   }

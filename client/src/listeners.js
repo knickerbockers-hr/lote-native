@@ -1,7 +1,6 @@
 import store from './store';
 import socket from './socket';
-import locationManager from './lib/BGService';
-import iosPush from './lib/iosPush';
+import BGService from './lib/BGService';
 import PushNotification from 'react-native-push-notification';
 
 PushNotification.configure({
@@ -12,19 +11,10 @@ PushNotification.configure({
   requestPermissions: true
 });
 
-locationManager.on("geofence", (geofence) => {
-	console.log('hello geofence');
-  PushNotification.localNotification({
-    title: 'Incoming Lote',
-    message: geofence.extras.lote.lote.message || 'Ooops',
-    playSound: true
-  });
+const BGInstance = BGService.getInstance();
+const locationManager = BGInstance.getPlugin();
 
-  locationManger.removeGeofence(geofence.identifier, () => { console.log('fence removed') },
-  	() => { console.log('removal failer'); });
-});
-
-let success = (pos) => {
+locationManager.on('location', (location) => {
   store.dispatch({
     type: 'UPDATE_USER_LOCATION',
     payload: {
@@ -32,12 +22,20 @@ let success = (pos) => {
       lng: pos.coords.longitude
     }
   });
+});
 
-  // socket.emit('location update', {
-  //   lat: pos.coords.latitude,
-  //   lng: pos.coords.longitude
-  // });
-};
+locationManager.on('geofence', (geofence) => {
+	console.log('hello geofence');
+  PushNotification.localNotification({
+    title: 'Incoming Lote',
+    message: geofence.extras.lote.lote.message || 'Ooops',
+    playSound: true
+  });
+
+  locationManager.removeGeofence(geofence.identifier, 
+    () => { console.log('fence removed') },
+  	() => { console.log('removal failer'); });
+});
 
 let newLote = (lote) => {
   store.dispatch({
@@ -51,14 +49,4 @@ socket.on('new message', function(data) {
   newLote(data.data); 
 });
 
-let error = (err) => {
-  // possibly want some sort of red flag in header when tracking isn't working
-  // to let you know when you aren't picking up lotes
-  console.warn('Tracking error: ', err);
-};
-
-let options = {
-
-};
-
-export default navigator.geolocation.watchPosition(success, error, options);
+export default locationManager; // not actually useful

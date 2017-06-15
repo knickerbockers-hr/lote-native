@@ -132,6 +132,7 @@ class BGService {
     this.state = {};
 
     this.plugin = BackgroundGeolocation;
+    this.plugin.removeGeofences(); // Else we are going to add a lot of duplicates depending
 
     let platform = DeviceInfo.getSystemName();
     if (platform.match(/iPhone/)) {
@@ -271,7 +272,7 @@ class BGService {
 
   convertLoteToGeofence(lote) {
     return {
-      identifier: 'lote_' + (++geofenceNextId),
+      identifier: `${lote.id}`,
       extras: {
         "lote": lote
       },
@@ -300,7 +301,7 @@ class BGService {
   */
   loadGeofences(lotes) {
     let geofences = lotes.map((lote) => this.convertLoteToGeofence(lote));
-    let plugin = this.plugin
+    let plugin = this.plugin;
 
     return new Promise((resolve, reject) => {
       plugin.addGeofences(geofences, 
@@ -393,4 +394,4 @@ class BGService {
     };
   }
 }
-module.exports = new BGService();
+module.exports = BGService;
