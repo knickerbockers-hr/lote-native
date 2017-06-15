@@ -35,7 +35,7 @@ class Lote extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={store} listeners={listeners}>
          <Nav />
       </Provider>
     );

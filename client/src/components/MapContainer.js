@@ -34,6 +34,7 @@ class WrappedMap extends React.Component {
   render() {
     const { lotecation, userLocation } = this.props;
     return (
+
       <MapView provider="google"
         style={ styles.map }
         region={ this.state.position }
@@ -47,10 +48,11 @@ class WrappedMap extends React.Component {
             <MapView.Marker key={lote.id}
             coordinate={{latitude: lote.location.latitude || 0,
               longitude: lote.location.longitude || 0}}
-            pinColor={color.backGroundColor} />
+            pinColor={color.backgroundColor} />
           );
         })}
       </MapView>
+
     );
   }
 }

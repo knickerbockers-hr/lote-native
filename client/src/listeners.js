@@ -1,7 +1,9 @@
-import store from './store';
-import socket from './socket';
-import BGService from './lib/BGService';
-import PushNotification from 'react-native-push-notification';
+const Store = require('./store');
+const socket = require('./socket');
+const BGService = require('./lib/BGService');
+const BGSettings = require('./lib/BGSettingsConfig');
+const PushNotification = require('react-native-push-notification');
+let store = Store.default;
 
 PushNotification.configure({
   onNotification: (notification) => {
@@ -11,10 +13,24 @@ PushNotification.configure({
   requestPermissions: true
 });
 
-const BGInstance = BGService.getInstance();
-const locationManager = BGInstance.getPlugin();
 
-locationManager.on('location', (location) => {
+
+const bgGeo = BGService.getInstance();
+
+const locationManager = bgGeo.getPlugin();
+
+locationManager.configure(BGSettings.Config, function(state) {
+  console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+
+  if (!state.enabled) {
+    locationManager.start(function() {
+      console.log("- Start success");
+    });
+  }
+});
+
+locationManager.on('location', (pos) => {
+  console.log('bg location', pos);
   store.dispatch({
     type: 'UPDATE_USER_LOCATION',
     payload: {
@@ -37,6 +53,8 @@ locationManager.on('geofence', (geofence) => {
   	() => { console.log('removal failer'); });
 });
 
+
+
 let newLote = (lote) => {
   store.dispatch({
     type: 'ONE_LOTE', 
@@ -44,9 +62,12 @@ let newLote = (lote) => {
   });
 };
 
+
 socket.on('new message', function(data) {
   console.log('SOCKET RESPONSE IN LISTENERS.JS', data.data); 
   newLote(data.data); 
 });
 
-export default locationManager; // not actually useful
+module.exports.socket = socket;
+module.exports.locationManager = locationManager;
+

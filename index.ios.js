@@ -7,7 +7,7 @@ import Nav from './client/src/components/Nav';
 
 const Lote = () => {
   return (
-    <Provider store={store}>
+    <Provider store={store} listeners={listeners}>
        <Nav />
     </Provider>
   );
