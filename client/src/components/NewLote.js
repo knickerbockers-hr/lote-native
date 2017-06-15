@@ -94,7 +94,7 @@ class NewLote extends Component {
         console.log (err);
       } else {
 
-        console.log('IN SOCKET EMIT FOR NEW LOTE COMPONENT')
+        console.log('IN SOCKET EMIT FOR NEW LOTE COMPONENT');
         store.dispatch(this.props.setActiveMessage(''));
         //this.props.getLotes(this.props.profile.id);
         //this.props.history.push('/lotes');

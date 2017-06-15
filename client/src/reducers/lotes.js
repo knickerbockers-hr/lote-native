@@ -4,7 +4,6 @@ const lotes = (state = [], action) => {
     console.log('adding lotes to store');
     return action.lotes;
   case 'ONE_LOTE' :
-    console.log('IN LOTES.JS', action.lote); 
   	let newState = state.slice(); 
   	newState.push(action.lote); 
   	return newState; 
