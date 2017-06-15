@@ -60,10 +60,10 @@ class WrappedMap extends React.Component {
           {this.props.lotes && this.props.lotes.map(lote => {
             let color = toMaterialStyle(lote.loteSender.email);
             return (
-              <MapView.Marker
+              <MapView.Marker key={lote.id}
               coordinate={{latitude: lote.location.latitude || 0,
                 longitude: lote.location.longitude || 0}}
-              image={<Icon size={24} color={color} name="place" />} />
+              pinColor={color.backGroundColor} />
             );
           })}
         </MapView>
