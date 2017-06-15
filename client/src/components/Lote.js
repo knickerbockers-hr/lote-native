@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   loteDisplay: {
     paddingTop: 20,
-    fontSize: 1.5
+    // fontSize: 1.5
   },
   forward: {
     paddingTop: 10,
@@ -45,14 +45,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loteMessage: {
-    fontSize: 1.2,
+    // fontSize: 1.2,
   },
   loteTimeStamp: {
-    color: '#777',
+    // color: '#777',
     alignItems: 'flex-end',
   },
   lotecationDetails: {
-    paddingBottom: 15,
     alignItems: 'center',
   }
 });
@@ -110,7 +109,7 @@ class Lote extends Component {
           <View>
             <View style={ styles.container }>
               <View style={ styles.loteDisplay }>
-                <Text>
+                <Text style={{ marginBottom:10 }}>
                    <Text style={ styles.container }>
                     { this.props.activeLote && this.props.activeLote.loteSender.display }
                   </Text>
@@ -123,12 +122,12 @@ class Lote extends Component {
                 <View style={ (this.props.activeLote && (this.props.activeLote.loteSender.id === this.props.profile.id)) ?
                   styles.loteDisplaySenderStyle : styles.loteDisplayReceiverStyle }>
                   <View style={ styles.loteMessage }>
-                    <Text>
+                    <Text style={{ fontSize:20, marginTop:10 }}>
                       { this.props.activeLote && this.props.activeLote.lote.message }
                     </Text>
                   </View>
                   <View style={ styles.loteTimeStamp }>
-                   <Text>
+                   <Text style={{ color:'#777' }}>
                     { this.props.activeLote && Moment(this.props.activeLote.created_at).format('LLLL') }
                     </Text>
                   </View>
@@ -136,7 +135,7 @@ class Lote extends Component {
                     <Text>
                       Lat/Lng: { this.props.activeLote && this.props.activeLote.location.latitude }/{ this.props.activeLote && this.props.activeLote.location.longitude }
                     </Text>
-                    <Text>
+                    <Text style={{ marginBottom:10}}>
                       Radius: { this.props.activeLote && this.props.activeLote.radius + ' meters'}
                     </Text>
                   </View>

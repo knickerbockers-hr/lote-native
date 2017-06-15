@@ -67,13 +67,19 @@ class Contacts extends React.Component {
               )
             })}
           </List>
-        </Content>          
-        <Item regular>
-          <Input ref="email" onChangeText={ this.handleEmailInput } value={ this.state.email } placeholder="Enter email address"/>
-        </Item>
-        <Button block primary onPress={ this.handleSubmitContact }>
-          <Text>Submit</Text>
-        </Button>
+        </Content>  
+        <View style={{ alignSelf: 'center', paddingBottom:10 }}>
+          <Text>New Contact:</Text>
+        </View>       
+          <Item regular>
+            <Input ref="email" onChangeText={ this.handleEmailInput } value={ this.state.email } placeholder="Enter email address"/>
+          </Item>
+        
+        <View style={{ alignSelf:'center', padding:10 }}>
+          <Button primary onPress={ this.handleSubmitContact }>
+            <Text style={{ color:'white', fontSize:20 }}>Submit</Text>
+          </Button>
+        </View>
       </Container>
     );
  }

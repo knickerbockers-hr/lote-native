@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableHighlight, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Header } from './common';
 import config from '../../../config/config.js';
+import logo from '../../../public/assets/logo-full-square.png';
 
 class Home extends React.Component {
   
@@ -45,13 +46,8 @@ class Home extends React.Component {
     return (
       <View>
         <Header headerText='Home' { ...this.props } />
-        <Text style={{ marginTop: 10 }}>Lote, location-based notes</Text>
-        <Text style={{ marginTop: 20 }}>
-          Recipe Count: { this.props.recipes }
-        </Text>
-        <TouchableHighlight onPress= {() => { this.props.addRecipe() }}>
-          <Text>Add recipe</Text>
-        </TouchableHighlight>
+        <Image source={logo} style={{ width:250, height:250, alignSelf: 'center', marginTop:100 }}/>
+        <Text style={{ alignSelf: 'center', fontSize:20 }}>Location-based notes</Text>
       </View>
     );
   }
