@@ -8,7 +8,7 @@ import Home from './Home';
 import Contacts from './Contacts';
 import NewLote from './NewLote';
 import MyProfile from './MyProfile';
-import Random from './Random';
+import Info from './Info';
 import Map from './Map';
 import Lotes from './Lotes';
 import Lote from './Lote';
@@ -17,7 +17,7 @@ var HomeScreen = connect((state) => { return state; }, actionCreators)(Home);
 var ContactsScreen = connect((state) => { return state; }, actionCreators)(Contacts);
 var NewLoteScreen = connect((state) => { return state; }, actionCreators)(NewLote);
 var MyProfileScreen = connect((state) => { return state; }, actionCreators)(MyProfile);
-var RandomScreen = connect((state) => { return state; }, actionCreators)(Random);
+var InfoScreen = connect((state) => { return state; }, actionCreators)(Info);
 var MapScreen = connect((state) => { return state; }, actionCreators)(Map);
 var LotesScreen = connect((state) => { return state; }, actionCreators)(Lotes);
 var LoteScreen = connect((state) => { return state; }, actionCreators)(Lote);
@@ -28,9 +28,6 @@ export const NewLoteStack = StackNavigator({
     navigationOptions: {
       tite: 'New Lote',
     }
-  },
-  Map: {
-    screen: MapScreen,
   }
 }, {
   mode: 'card',
@@ -61,7 +58,7 @@ const Nav = TabNavigator({
   Contacts: { screen: ContactsStack },
   NewLote: { screen: NewLoteStack },
   MyProfile: { screen: MyProfileScreen },
-  Random: { screen: RandomScreen },
+  Info: { screen: InfoScreen },
 }, {
   tabBarComponent: NavigationComponent,
   tabBarPosition: 'bottom',
@@ -82,7 +79,7 @@ const Nav = TabNavigator({
         MyProfile: {
           barBackgroundColor: '#37474F'
         },
-        Random: { 
+        Info: { 
           barBackgroundColor: '#37474F',
         }
       }
