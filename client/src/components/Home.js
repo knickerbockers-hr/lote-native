@@ -5,6 +5,13 @@ import { Header } from './common';
 import config from '../../../config/config.js';
 import logo from '../../../public/assets/logo-full-square.png';
 
+const BGService = require('../lib/BGService');
+const bgGeo = BGService.getInstance();
+
+const locationManager = bgGeo.getPlugin();
+
+const PushNotification = require('react-native-push-notification');
+
 class Home extends React.Component {
   
   static navigationOptions = {
@@ -40,6 +47,41 @@ class Home extends React.Component {
           console.log (err);
         });
     });
+    console.log('mount home');
+
+    // PushNotification.configure({
+    //   onNotification: (notification) => {
+    //     console.log('NOTIFICATION: ', notification);
+    //   }, 
+
+    //   requestPermissions: true
+    // });
+
+
+
+    // locationManager.on('geofence', (geofence) => {
+    //   console.log('hello geofence');
+    //   PushNotification.localNotification({
+    //     title: 'Incoming Lote',
+    //     message: geofence.extras.lote.lote.message || 'Ooops',
+    //     playSound: true
+    //   });
+
+    //   store.dispatch({
+    //     type: 'SET_ACTIVE_LOTE',
+    //     payload: geofence.extras.lote
+    //   });
+
+    //   locationManager.removeGeofence(geofence.identifier, 
+    //     () => { console.log('fence removed') },
+    //     () => { console.log('removal failer'); });
+    //   return this.props.navigation.navigate('Lote');
+    // });
+
+  }
+
+  componentWillUnmount() {
+    console.log('unmount home');
   }
 
   render() {

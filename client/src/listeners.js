@@ -18,6 +18,7 @@ PushNotification.configure({
 const bgGeo = BGService.getInstance();
 
 const locationManager = bgGeo.getPlugin();
+locationManager.removeListeners();
 
 locationManager.configure(BGSettings.Config, function(state) {
   console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
@@ -48,6 +49,11 @@ locationManager.on('geofence', (geofence) => {
     playSound: true
   });
 
+  store.dispatch({
+    type: 'SET_ACTIVE_LOTE',
+    geofence.extras.lote
+  });
+
   locationManager.removeGeofence(geofence.identifier, 
     () => { console.log('fence removed') },
   	() => { console.log('removal failer'); });
@@ -65,6 +71,11 @@ let newLote = (lote) => {
 
 socket.on('new message', function(data) {
   console.log('SOCKET RESPONSE IN LISTENERS.JS', data.data); 
+  PushNotification.localNotification({
+    title: 'Incoming Lote',
+    message: data.lote.message || 'Ooops',
+    playSound: true
+  });
   newLote(data.data); 
 });
 

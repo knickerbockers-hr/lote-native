@@ -4,7 +4,6 @@ import ReactNative, {
   PermissionsAndroid } from 'react-native';
 import { Provider } from 'react-redux';
 import store from './client/src/store';
-import listeners from './client/src/listeners';
 import Nav from './client/src/components/Nav';
 import BGHeadlessService from './client/src/lib/BGHeadlessService';
 
@@ -35,7 +34,7 @@ class Lote extends React.Component {
 
   render() {
     return (
-      <Provider store={store} listeners={listeners}>
+      <Provider store={store}>
          <Nav />
       </Provider>
     );
