@@ -163,7 +163,7 @@ class NewLote extends React.Component {
           </View>
           <View style={{ alignItems: "center", paddingTop: 5, flexDirection: 'row' }}>
             <View style={{ alignItems: 'center', width:150 }}>
-              <Text style={{ fontSize: 12 }}>Select Radius:</Text>
+              <Text style={{ fontSize: 12, paddingTop: 10 }}>Select Radius:</Text>
               <Picker
                 supportedOrientations={ ['portrait','landscape'] }
                 iosHeader="Select Radius"
@@ -177,7 +177,7 @@ class NewLote extends React.Component {
                 <Picker.Item value={ 10000 } label="10,000 meters" />
               </Picker>
             </View>
-            <View style={{ padding:10, alignItems: "center" }}>
+            <View style={{ alignItems: "center" }}>
               <Text style={{ paddingBottom: 5, fontSize: 12 }}>Location-Locked:</Text>
               <CheckBox
                 label=""
