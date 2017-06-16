@@ -4,16 +4,16 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Header } from './common';
 import GeolocationExample from './GeolocationExample';
 
-class Random extends React.Component {
+class Info extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Random',
+    tabBarLabel: 'Info',
     tabBarIcon: () => (<Icon size={24} color="white" name="info-outline" />)
   }
 
   render() {
     return (
       <View>
-        <Header headerText='Random' { ...this.props } />
+        <Header headerText='Info' { ...this.props } />
         <Text style={{ marginTop: 10 }}>{ this.props.profile.display }</Text>
         <GeolocationExample />
       </View>
@@ -21,4 +21,4 @@ class Random extends React.Component {
   }
 }
 
-export default Random;
+export default Info;

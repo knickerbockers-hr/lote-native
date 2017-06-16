@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { TextInput, View, Text, ScrollView } from 'react-native';
+import { TextInput, View, Text, ScrollView, StyleSheet } from 'react-native';
 import CheckBox from 'react-native-checkbox';
 import Dropdown, { Select, Option, OptionList } from 'react-native-selectme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -10,8 +10,20 @@ import MapView from 'react-native-maps';
 import config from '../../../config/config.js';
 import socket from '../socket'; 
 import store from '../store'; 
+import MapContainer from './MapContainer';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 const apiBaseUrl = config.API_BASE_URL;
+
+const styles = StyleSheet.create({
+  mapContainer: {
+    ...StyleSheet.absoluteFillObject,
+    height: '100%',
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  }
+});
 
 class NewLote extends React.Component {
 
@@ -47,7 +59,8 @@ class NewLote extends React.Component {
   }
 
   handleRecipientChange (recipientIndex) {
-    this.props.setActiveContact(this.props.contacts[recipientIndex]);
+    this.props.setActiveContact(this.props.contacts[recipientIndex].receiver);
+    console.log ('active contact', this.props.activeContact);
     this.setState({
       recipientIndex: recipientIndex
     });
@@ -71,7 +84,6 @@ class NewLote extends React.Component {
   handleSubmit(event) {
     //event.preventDefault(); 
     console.log('in handle submit mobile');
-
     console.log('ACTIVE MESSAGE IS....', this.props.activeMessage);
 
     let loteInfo = {
@@ -86,8 +98,6 @@ class NewLote extends React.Component {
     };
     
     console.log('LOTE INFO', loteInfo);
-
-
     socket.emit('send message', loteInfo, (err, msg) => {
       console.log('IN NEW LOTE IN THE MOBILE VERSION SOCKET EMIT');
 
@@ -102,7 +112,8 @@ class NewLote extends React.Component {
       }
     });
 
-    return this.props.navigation.navigate('Map');
+    // console.log ('hello', this.props.screenProps.parentNavigation);
+    // return this.props.navigation.navigate('');
   }
 
   placeRef(ref) {
@@ -123,60 +134,64 @@ class NewLote extends React.Component {
     const {lotecation, userLocation} = this.props;
     return (
       <Container>
-        <Header headerText='New Lote' { ...this.props } />
-        <Content>
-          <View style={{ alignItems: 'center', marginTop: 50 }}>
-            <Text>Select Recipient:</Text>
-            <Picker
-              supportedOrientations={ ['portrait','landscape'] }
-              iosHeader="Recipient"
-              mode="dropdown"
-              selectedValue={ this.state.recipientIndex }
-              onValueChange={ this.handleRecipientChange }>
-              { this.props.contacts.map((contact, index) => {
-                return (
-                  <Picker.Item label={ contact.receiver.display ? contact.receiver.display : contact.receiver.email } key={ contact.receiver.id } value={ index } />
-                )
-              })}
-            </Picker>
+        <MapContainer style={styles.mapContainer} {...this.props} />
+        <View style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+          <View>
+            <View style={{ alignItems: 'center', marginTop: 20 }}>
+              <Text style={{ marginTop: 5 }}>Select Recipient:</Text>
+              <Picker
+                supportedOrientations={ ['portrait','landscape'] }
+                iosHeader="Recipient"
+                mode="dropdown"
+                selectedValue={ this.state.recipientIndex }
+                onValueChange={ this.handleRecipientChange }>
+                { this.props.contacts.map((contact, index) => {
+                  return (
+                    <Picker.Item label={ contact.receiver.display ? contact.receiver.display : contact.receiver.email } key={ contact.receiver.id } value={ index } />
+                  )
+                })}
+              </Picker>
+            </View>
           </View>
-          <View style={{ paddingTop:40 }}>
+          <View>
             <Item underline>
-              <Input placeholder='Enter a message' onChangeText={ (event) => this.props.setActiveMessage(event) }/>
+              <Input placeholder='Enter a message' value={ this.props.activeMessage } onChangeText={ (event) => this.props.setActiveMessage(event) }/>
             </Item>  
             <Item underline>
               <Input id="locationSearch" ref={ this.placeRef } placeholder='Location search' />
             </Item>
           </View>
-          
-          <View style={{ alignItems: "center", paddingTop:75, paddingBottom:25 }}>
-            <Text>Select Radius:</Text>
-            <Picker
-              supportedOrientations={ ['portrait','landscape'] }
-              iosHeader="Select Radius"
-              mode="dropdown"
-              selectedValue={ this.state.radius }
-              onValueChange={ this.handleRadiusChange.bind(this) }>
-              <Picker.Item value={ 20 } label="20 meters" />
-              <Picker.Item value={ 100 } label="100 meters" />
-              <Picker.Item value={ 500 } label="500 meters" />
-              <Picker.Item value={ 2500 } label="2,500 meters" />
-              <Picker.Item value={ 10000 } label="10,000 meters" />
-            </Picker>
-            <View style={{ padding:10 }}>
+          <View style={{ alignItems: "center", paddingTop: 5, flexDirection: 'row' }}>
+            <View style={{ alignItems: 'center', width:150 }}>
+              <Text style={{ fontSize: 12, paddingTop: 10 }}>Select Radius:</Text>
+              <Picker
+                supportedOrientations={ ['portrait','landscape'] }
+                iosHeader="Select Radius"
+                mode="dropdown"
+                selectedValue={ this.state.radius }
+                onValueChange={ this.handleRadiusChange.bind(this) }>
+                <Picker.Item value={ 20 } label="20 meters" />
+                <Picker.Item value={ 100 } label="100 meters" />
+                <Picker.Item value={ 500 } label="500 meters" />
+                <Picker.Item value={ 2500 } label="2,500 meters" />
+                <Picker.Item value={ 10000 } label="10,000 meters" />
+              </Picker>
+            </View>
+            <View style={{ alignItems: "center" }}>
+              <Text style={{ paddingBottom: 5, fontSize: 12 }}>Location-Locked:</Text>
               <CheckBox
-                label="Location-Locked"
+                label=""
                 checked={ this.state.lock }
                 onChange={ (checked) => this.handleLockToggle(!checked) }
               />
             </View>
-            <View style={{ alignItems: 'center', marginTop:10 }}>
+            <View style={{ alignItems: 'center', marginTop: 10, marginLeft: 25 }}>
               <Button primary onPress={ this.handleSubmit }>
-                <Text style={{ color:'white', fontSize:20 }}>Submit</Text>
+                <IonIcon size={24} color="white" name="ios-paper-plane" />
               </Button>
             </View>  
           </View>  
-        </Content>
+        </View>
       </Container>
     )
   }
